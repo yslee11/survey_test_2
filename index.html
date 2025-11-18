@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>보행환경 인식 설문조사</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 표지 페이지 -->
+  <section id="intro-page" class="page active">
+    <div class="container">
+      <h1 class="title">보행환경 인식 설문조사</h1>
+
+      <div class="intro-box">
+        <p class="intro-text">
+          안녕하세요. 본 설문은 <b>한양대학교 도시공학과 도시설계 및 공간분석 연구실</b>에서 
+          서울시 보행환경에 대한 <b>다차원적 인식</b>을 평가하기 위해 진행됩니다.
+        </p>
+      </div>
+
+      <div class="guide-box">
+        <h3>📋 평가 방법</h3>
+        <ul>
+          <li>● 제시되는 사진을 보고 <b>여러 항목</b>에 대해 1~5점으로 평가합니다.</li>
+          <li>● 각 항목별로 다음 기준을 사용합니다:</li>
+        </ul>
+        
+        <div class="rating-guide">
+          <div class="rating-item">
+            <span class="rating-score">1점</span>
+            <span class="rating-desc">매우 그렇지 않다</span>
+          </div>
+          <div class="rating-item">
+            <span class="rating-score">2점</span>
+            <span class="rating-desc">그렇지 않다</span>
+          </div>
+          <div class="rating-item">
+            <span class="rating-score">3점</span>
+            <span class="rating-desc">보통이다</span>
+          </div>
+          <div class="rating-item">
+            <span class="rating-score">4점</span>
+            <span class="rating-desc">그렇다</span>
+          </div>
+          <div class="rating-item">
+            <span class="rating-score">5점</span>
+            <span class="rating-desc">매우 그렇다</span>
+          </div>
+        </div>
+
+        <ul class="guide-notes">
+          <li>● <b>평가 항목:</b> 안전성, 쾌적성, 편리성, 접근성</li>
+          <li>● 각 이미지마다 <b>모든 항목</b>을 평가해주세요.</li>
+        </ul>
+      </div>
+
+      <div class="form-section">
+        <h3>👤 기본 정보</h3>
+        <div class="form-group">
+          <label class="form-label">성별:</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="gender" value="남">
+              <span>남</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="여">
+              <span>여</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="age">연령대:</label>
+          <select name="age" id="age" class="select-input">
+            <option value="">선택해 주세요</option>
+            <option value="10대">10대</option>
+            <option value="20대">20대</option>
+            <option value="30대">30대</option>
+            <option value="40대">40대</option>
+            <option value="50대">50대</option>
+            <option value="60대">60대</option>
+            <option value="70대 이상">70대 이상</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="startBtn" class="start-btn">설문 시작 ▶</button>
+    </div>
+  </section>
+
+  <!-- 설문 페이지 -->
+  <section id="survey-page" class="page">
+    <div class="survey-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+        <span class="progress-text" id="progress-text">1 / 20</span>
+      </div>
+
+      <h2 class="survey-title">이미지를 보고 각 항목을 평가해주세요</h2>
+      
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>이미지 불러오는 중...</p>
+      </div>
+      
+      <img id="survey-image" alt="보행환경 이미지" class="survey-img" />
+      
+      <form id="score-form" class="rating-form">
+        <!-- 안전성 -->
+        <div class="rating-section">
+          <h4 class="rating-question">🛡️ 안전성: 이 장소는 안전하다고 느껴진다</h4>
+          <div class="rating-scale">
+            <label class="rating-option">
+              <input type="radio" name="safety" value="1" required>
+              <span class="option-text">1</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="safety" value="2">
+              <span class="option-text">2</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="safety" value="3">
+              <span class="option-text">3</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="safety" value="4">
+              <span class="option-text">4</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="safety" value="5">
+              <span class="option-text">5</span>
+            </label>
+          </div>
+          <div class="scale-labels">
+            <span>매우 그렇지 않다</span>
+            <span>매우 그렇다</span>
+          </div>
+        </div>
+
+        <!-- 쾌적성 -->
+        <div class="rating-section">
+          <h4 class="rating-question">🌿 쾌적성: 이 장소는 쾌적하다고 느껴진다</h4>
+          <div class="rating-scale">
+            <label class="rating-option">
+              <input type="radio" name="comfort" value="1" required>
+              <span class="option-text">1</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="comfort" value="2">
+              <span class="option-text">2</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="comfort" value="3">
+              <span class="option-text">3</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="comfort" value="4">
+              <span class="option-text">4</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="comfort" value="5">
+              <span class="option-text">5</span>
+            </label>
+          </div>
+          <div class="scale-labels">
+            <span>매우 그렇지 않다</span>
+            <span>매우 그렇다</span>
+          </div>
+        </div>
+
+        <!-- 편리성 -->
+        <div class="rating-section">
+          <h4 class="rating-question">🚶 편리성: 이 장소는 보행하기 편리하다</h4>
+          <div class="rating-scale">
+            <label class="rating-option">
+              <input type="radio" name="convenience" value="1" required>
+              <span class="option-text">1</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="convenience" value="2">
+              <span class="option-text">2</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="convenience" value="3">
+              <span class="option-text">3</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="convenience" value="4">
+              <span class="option-text">4</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="convenience" value="5">
+              <span class="option-text">5</span>
+            </label>
+          </div>
+          <div class="scale-labels">
+            <span>매우 그렇지 않다</span>
+            <span>매우 그렇다</span>
+          </div>
+        </div>
+
+        <!-- 접근성 -->
+        <div class="rating-section">
+          <h4 class="rating-question">♿ 접근성: 이 장소는 접근하기 쉽다</h4>
+          <div class="rating-scale">
+            <label class="rating-option">
+              <input type="radio" name="accessibility" value="1" required>
+              <span class="option-text">1</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="accessibility" value="2">
+              <span class="option-text">2</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="accessibility" value="3">
+              <span class="option-text">3</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="accessibility" value="4">
+              <span class="option-text">4</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="accessibility" value="5">
+              <span class="option-text">5</span>
+            </label>
+          </div>
+          <div class="scale-labels">
+            <span>매우 그렇지 않다</span>
+            <span>매우 그렇다</span>
+          </div>
+        </div>
+      </form>
+
+      <div class="button-group">
+        <button type="button" id="prevBtn" class="nav-btn prev-btn">◀ 이전</button>
+        <button type="button" id="nextBtn" class="nav-btn next-btn">다음 ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 완료 페이지 -->
+  <section id="end-page" class="page">
+    <div class="end-container">
+      <div class="success-icon">✅</div>
+      <h2 class="end-title">설문이 완료되었습니다!</h2>
+      <p class="end-text">소중한 시간을 내어 참여해 주셔서 진심으로 감사드립니다.</p>
+      <p class="end-subtext">귀하의 응답은 연구에 큰 도움이 될 것입니다.</p>
+      
+      <div class="end-info">
+        <p>📊 총 <span id="total-images">0</span>개 이미지 평가 완료</p>
+        <p>⏱️ 소요 시간: <span id="elapsed-time">0분</span></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
