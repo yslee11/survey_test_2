@@ -2,15 +2,15 @@
 
 // GitHub 저장소 정보
 const GITHUB = {
-  owner: "YOUR_GITHUB_USERNAME",    // ✅ 본인 깃허브 ID
-  repo: "YOUR_REPO_NAME",           // ✅ 저장소 이름
+  owner: "yslee11",    // ✅ 본인 깃허브 ID
+  repo: "survey_test_2",           // ✅ 저장소 이름
   branch: "main",                   // ✅ 브랜치 (보통 main)
   path: "images"                    // ✅ 이미지 폴더 이름
 };
 
 // Google Apps Script Web App URL
 // ✅ Apps Script 배포 후 여기에 URL을 붙여넣으세요
-const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyx8WPaQu2tEmJVvVHMnaLUtN52Si6yLU2bIxbuovzKlcqgIXvHfq_ZnjHfkWQO81y/exec";
 
 // 샘플 이미지 개수 (전체 이미지 중 랜덤으로 선택할 개수)
 const SAMPLE_SIZE = 20;
